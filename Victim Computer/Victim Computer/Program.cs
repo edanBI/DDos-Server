@@ -11,23 +11,7 @@ namespace Victim_Computer
         static void Main(string[] args)
         {
             Console.Title = "Victim";
-
-            Victim v1 = new Victim(8080);
+            Victim victim = new Victim();
         }
     }
 }
-
-//Console.Write("enter port number: ");
-//int port;
-//try
-//{
-//    port = Convert.ToInt16(Console.ReadLine());
-//    Victim v = new Victim(port);
-
-//    v.StopServer();
-//}
-//catch (Exception e) {
-//    Console.WriteLine(e.ToString());
-//}
-
-//Console.ReadLine();

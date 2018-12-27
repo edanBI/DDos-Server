@@ -1,0 +1,7 @@
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Victim Computer\Victim Computer\obj\Debug\Victim Computer.csprojResolveAssemblyReference.cache
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Victim Computer\Victim Computer\obj\Debug\Victim Computer.csproj.CoreCompileInputs.cache
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Victim Computer\Victim Computer\bin\Debug\Victim Computer.exe.config
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Victim Computer\Victim Computer\bin\Debug\Victim Computer.exe
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Victim Computer\Victim Computer\bin\Debug\Victim Computer.pdb
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Victim Computer\Victim Computer\obj\Debug\Victim Computer.exe
+C:\Users\user\Google Drive\School\תקשורת נתונים\Hackathon\Project Code\Victim Computer\Victim Computer\obj\Debug\Victim Computer.pdb
